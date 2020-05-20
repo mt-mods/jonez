@@ -7,7 +7,7 @@
 ## Textures
 
 - Textures made by runs
-- CC BY-SA 4.0
+- CC0
 
 ## Sounds
 
