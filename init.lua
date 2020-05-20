@@ -68,7 +68,8 @@ local styles = {
 	"greek",
 	"germanic",
 	"tuscan",
-	"romanic"
+	"romanic",
+	"nabataean"
 }
 
 --The chisel to carve the marble
