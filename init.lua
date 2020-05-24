@@ -8,9 +8,29 @@ function firstToUpper(str)
     return (str:gsub("^%l", string.upper))
 end
 
+local function on_punch_marble(pos, player, replace_item)
+	local wielded_item = player:get_wielded_item()
+	local wielded_item_name = wielded_item:get_name()
+	if wielded_item_name == "jonez:chisel" then
+		minetest.set_node(pos, {name= replace_item})
+		minetest.sound_play("jonez_carve", {pos = pos, gain = 0.7, max_hear_distance = 5})
+	end
+end
+
 minetest.register_node("jonez:marble", {
 	description = S("Ancient Marble"),
 	tiles = {"jonez_marble.png"},
+	is_ground_content = true,
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+	on_punch = function(pos, node, player, pointed_thing)
+		on_punch_marble(pos, player, "jonez:marble_polished")
+	end,
+})
+
+minetest.register_node("jonez:marble_polished", {
+	description = S("Ancient Polished Marble"),
+	tiles = {"jonez_marble_polished.png"},
 	is_ground_content = true,
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
@@ -41,13 +61,51 @@ minetest.register_node("jonez:marble_brick", {
 	is_ground_content = true,
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
+	on_punch = function(pos, node, player, pointed_thing)
+		on_punch_marble(pos, player, "jonez:marble_brick_polished")
+	end,
 })
 
+minetest.register_node("jonez:marble_brick_polished", {
+	description = S("Ancient Marble Polished Brick"),
+	tiles = {"jonez_marble_brick_polished.png"},
+	is_ground_content = true,
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+stairs.register_stair_and_slab(
+	"marble_polished",
+	"jonez:marble_polished",
+	{choppy = 2, stone = 1},
+	{"jonez_marble_polished.png"},
+	S("Ancient Polished Marble Stair"),
+	S("Ancient Polished Marble Slab"),
+	default.node_sound_stone_defaults()
+)
+stairs.register_stair_and_slab(
+	"marble_brick_polished",
+	"jonez:marble_brick_polished",
+	{choppy = 2, stone = 1},
+	{"jonez_marble_brick_polished.png"},
+	S("Ancient Polished Marble Brick Stair"),
+	S("Ancient Polished Marble Brick Slab"),
+	default.node_sound_stone_defaults()
+)
+
 minetest.register_craft({
-	output = 'jonez:marble_bricks',
+	output = 'jonez:marble_brick',
 	recipe = {
 		{'jonez:marble', 'jonez:marble'},
 		{'jonez:marble', 'jonez:marble'},
+	}
+})
+
+minetest.register_craft({
+	output = 'jonez:marble_brick_polished',
+	recipe = {
+		{'jonez:marble_polished', 'jonez:marble_polished'},
+		{'jonez:marble_polished', 'jonez:marble_polished'},
 	}
 })
 
@@ -241,6 +299,27 @@ local pavements= {
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', ''},
 			{'', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', ''},
+		}
+	},
+	{name= "jonez:mosaic_pavement", description= "Ancient Mosaic Pavement", texture= "jonez_mosaic_pavement.png",
+		recipe = {
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
+		}
+	},
+	{name= "jonez:diamond_pavement", description= "Ancient Diamond Pavement", texture= "jonez_diamond_pavement.png",
+		recipe = {
+			{'', 'stairs:slab_marble', ''},
+			{'stairs:slab_marble', '', 'stairs:slab_marble'},
+			{'', 'stairs:slab_marble', ''},
+		}
+	},
+	{name= "jonez:pebbled_pavement", description= "Ancient Pebbled Pavement", texture= "jonez_pebbled_pavement.png",
+		recipe = {
+			{'', 'stairs:slab_marble_brick_polished', ''},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
+			{'', 'stairs:slab_marble_brick_polished', ''},
 		}
 	},
 }
