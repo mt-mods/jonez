@@ -128,7 +128,8 @@ local styles = {
 	"tuscan",
 	"romanic",
 	"nabataean",
-	"artdeco"
+	"artdeco",
+	"minoan"
 }
 
 --The chisel to carve the marble
