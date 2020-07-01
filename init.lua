@@ -58,7 +58,7 @@ stairs.register_stair_and_slab(
 minetest.register_node("jonez:marble_brick", {
 	description = S("Ancient Marble Brick"),
 	tiles = {"jonez_marble_brick.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
 	on_punch = function(pos, node, player, pointed_thing)
@@ -69,7 +69,7 @@ minetest.register_node("jonez:marble_brick", {
 minetest.register_node("jonez:marble_brick_polished", {
 	description = S("Ancient Marble Polished Brick"),
 	tiles = {"jonez_marble_brick_polished.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -129,7 +129,8 @@ local styles = {
 	"romanic",
 	"nabataean",
 	"artdeco",
-	"minoan"
+	"minoan",
+	"attic",
 }
 
 --The chisel to carve the marble
@@ -176,7 +177,7 @@ for i = 1, #styles do
 	minetest.register_node("jonez:"..styles[i].."_architrave", {
 		description = S("Ancient").." "..S(firstToUpper(styles[i])).." "..S("Architrave"),
 		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_architrave.png"},
-		is_ground_content = true,
+		is_ground_content = false,
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
 		on_construct = function(pos)
@@ -190,7 +191,7 @@ for i = 1, #styles do
 	minetest.register_node("jonez:"..styles[i].."_capital", {
 		description = S("Ancient").." "..S(firstToUpper(styles[i])).." "..S("Capital"),
 		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_capital.png"},
-		is_ground_content = true,
+		is_ground_content = false,
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
 		on_construct = function(pos)
@@ -204,7 +205,7 @@ for i = 1, #styles do
 	minetest.register_node("jonez:"..styles[i].."_shaft", {
 		description = S("Ancient").." "..S(firstToUpper(styles[i])).." "..S("Shaft"),
 		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_shaft.png"},
-		is_ground_content = true,
+		is_ground_content = false,
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
 		on_construct = function(pos)
@@ -218,7 +219,7 @@ for i = 1, #styles do
 	minetest.register_node("jonez:"..styles[i].."_base", {
 		description = S("Ancient").." "..S(firstToUpper(styles[i])).." "..S("Base"),
 		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_base.png"},
-		is_ground_content = true,
+		is_ground_content = false,
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
 		on_construct = function(pos)
@@ -259,18 +260,25 @@ for i = 1, #vines do
 end
 
 local panels = {
-	{name= "jonez_panel_1", description= "Mosaic Glass Panel", texture="jonez_panel_1.png",
+	{name= "jonez_panel_1", description= "Mosaic Glass Panel", textures={front= "jonez_panel_1.png", edge="jonez_panes_edge.png"},
 		recipe = {
 			{"dye:blue", "dye:black", "dye:pink"},
 			{"dye:red", "xpanes:pane_flat", "dye:green"},
 			{"dye:yellow", "dye:black", "dye:orange"},
 		}
 	},
-	{name= "jonez_panel_2", description= "Blossom Glass Panel", texture="jonez_panel_2.png",
+	{name= "jonez_panel_2", description= "Blossom Glass Panel", textures={front="jonez_panel_2.png", edge="jonez_panes_edge.png"},
 		recipe = {
 			{"dye:blue", "dye:red", "dye:green"},
 			{"dye:yellow", "xpanes:pane_flat", "dye:yellow"},
 			{"dye:green", "dye:red", "dye:orange"},
+		}
+	},
+	{name= "jonez:wrought_lattice_bottom", description= "Ancient Wrought Lattice (Bottom)",textures={front="jonez_wrought_lattice_bottom.png", edge="jonez_panes_edge.png"},
+		recipe = {
+			{'', '', ''},
+			{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
+			{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
 		}
 	},
 }
@@ -278,9 +286,9 @@ local panels = {
 for j=1, #panels do
 	xpanes.register_pane(panels[j].name, {
 		description = S(panels[j].description),
-		textures = {panels[j].texture, "", "xpanes_edge.png"},
-		inventory_image = panels[j].texture,
-		wield_image = panels[j].texture,
+		textures = {panels[j].textures.front, nil, panels[j].textures.edge},
+		inventory_image = panels[j].textures.front,
+		wield_image = panels[j].textures.front,
 		sounds = default.node_sound_glass_defaults(),
 		groups = {snappy=2, cracky=3, oddly_breakable_by_hand=3},
 		recipe = panels[j].recipe
@@ -323,6 +331,13 @@ local pavements= {
 			{'', 'stairs:slab_marble_brick_polished', ''},
 		}
 	},
+	{name= "jonez:pebbled_wall", description= "Ancient Pebbled Wall", texture= "jonez_pebbled_wall.png",
+		recipe = {
+			{'', 'stairs:slab_marble_brick_polished', ''},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
+			{'', 'stairs:slab_marble_brick_polished', ''},
+		}
+	},
 }
 
 for i = 1, #pavements do
@@ -339,3 +354,37 @@ for i = 1, #pavements do
 		recipe = pavements[i].recipe,
 	})
 end
+
+minetest.register_node("jonez:wrought_lattice_top", {
+	description = S("Ancient Wrought Lattice (Top)"),
+	is_ground_content = true,
+	groups = {cracky=3},
+	walkable = true,
+	sounds = default.node_sound_stone_defaults(),
+	paramtype = "light",
+	paramtype2 = "facedir",
+	drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.0, 0.5, 0.1875, 0.0},
+		}
+	},
+	tiles = {
+		nil,
+		nil,
+		nil,
+		nil,
+		"jonez_wrought_lattice_top.png",
+		"jonez_wrought_lattice_top.png"
+	},
+})
+
+minetest.register_craft({
+	output = 'jonez:wrought_lattice_top',
+	recipe = {
+		{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
+		{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
+		{'', '', ''},
+	}
+})
