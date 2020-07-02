@@ -131,6 +131,7 @@ local styles = {
 	"artdeco",
 	"minoan",
 	"attic",
+	"versailles"
 }
 
 --The chisel to carve the marble
@@ -281,6 +282,20 @@ local panels = {
 			{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
 		}
 	},
+	{name= "jonez:palace_window_top", description= "Palace Window (Top)",textures={front="jonez_palace_window_top.png", edge="default_wood.png"},
+		recipe = {
+			{'', 'xpanes:pane_flat', ''},
+			{'', 'xpanes:pane_flat', ''},
+			{'', '', ''},
+		}
+	},
+	{name= "jonez:palace_window_bottom", description= "Palace Window (Bottom)",textures={front="jonez_palace_window_bottom.png", edge="default_wood.png"},
+		recipe = {
+			{'', '', ''},
+			{'', 'xpanes:pane_flat', ''},
+			{'', 'xpanes:pane_flat', ''},
+		}
+	},
 }
 
 for j=1, #panels do
@@ -387,4 +402,41 @@ minetest.register_craft({
 		{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
 		{'', '', ''},
 	}
+})
+
+minetest.register_node("jonez:versailles_pavement", {
+	description = S("Versailles Pavement"),
+	tiles = {"jonez_versailles_pavement.png"},
+	is_ground_content = false,
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+
+minetest.register_craft({
+	output = 'jonez:versailles_pavement',
+	type = "shaped",
+	recipe = {
+		{'', '', ''},
+		{'', 'stairs:slab_marble_brick', ''},
+		{'stairs:slab_marble_brick', '', 'stairs:slab_marble_brick'},
+	},
+})
+
+minetest.register_node("jonez:versailles_tile", {
+	description = S("Versailles Tile"),
+	tiles = {"jonez_versailles_tile.png"},
+	is_ground_content = false,
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craft({
+	output = 'jonez:versailles_tile 9',
+	type = "shapeless",
+	recipe = {
+		'jonez:diamond_pavement', 'stairs:slab_marble_brick', 'jonez:diamond_pavement',
+		'stairs:slab_marble_brick', 'jonez:diamond_pavement', 'stairs:slab_marble_brick',
+		'jonez:diamond_pavement', 'stairs:slab_marble_brick', 'jonez:diamond_pavement',
+	},
 })
