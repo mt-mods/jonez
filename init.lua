@@ -39,7 +39,7 @@ minetest.register_node("jonez:marble_polished", {
 stairs.register_stair_and_slab(
 	"marble",
 	"jonez:marble",
-	{choppy = 2, stone = 1},
+	{cracky = 2, stone = 1},
 	{"jonez_marble.png"},
 	S("Ancient Marble Stair"),
 	S("Ancient Marble Slab"),
@@ -48,7 +48,7 @@ stairs.register_stair_and_slab(
 stairs.register_stair_and_slab(
 	"marble_brick",
 	"jonez:marble_brick",
-	{choppy = 2, stone = 1},
+	{cracky = 2, stone = 1},
 	{"jonez_marble_brick.png"},
 	S("Ancient Marble Brick Stair"),
 	S("Ancient Marble Brick Slab"),
@@ -77,7 +77,7 @@ minetest.register_node("jonez:marble_brick_polished", {
 stairs.register_stair_and_slab(
 	"marble_polished",
 	"jonez:marble_polished",
-	{choppy = 2, stone = 1},
+	{cracky = 2, stone = 1},
 	{"jonez_marble_polished.png"},
 	S("Ancient Polished Marble Stair"),
 	S("Ancient Polished Marble Slab"),
@@ -86,7 +86,7 @@ stairs.register_stair_and_slab(
 stairs.register_stair_and_slab(
 	"marble_brick_polished",
 	"jonez:marble_brick_polished",
-	{choppy = 2, stone = 1},
+	{cracky = 2, stone = 1},
 	{"jonez_marble_brick_polished.png"},
 	S("Ancient Polished Marble Brick Stair"),
 	S("Ancient Polished Marble Brick Slab"),
