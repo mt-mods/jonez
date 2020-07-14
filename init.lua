@@ -132,7 +132,8 @@ local styles = {
 	"minoan",
 	"attic",
 	"versailles",
-	"medieval"
+	"medieval",
+	"gothic"
 }
 
 --The chisel to carve the marble
@@ -354,11 +355,25 @@ local pavements= {
 			{'', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
 		}
 	},
+	{name= "jonez:pebbled_gothic_pavement", description= "Ancient Pebbled Gothic Pavement", texture= "jonez_pebbled_gothic_pavement.png",
+		recipe = {
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', ''},
+			{'', 'stairs:slab_marble_brick_polished', ''},
+			{'', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
+		}
+	},
 	{name= "jonez:pebbled_wall", description= "Ancient Pebbled Wall", texture= "jonez_pebbled_wall.png",
 		recipe = {
 			{'', 'stairs:slab_marble_brick_polished', ''},
 			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
 			{'', 'stairs:slab_marble_brick_polished', ''},
+		}
+	},
+	{name= "jonez:gothic_wall", description= "Ancient Gothic Wall", texture= "jonez_gothic_top_bottom.png",
+		recipe = {
+			{'', 'stairs:slab_marble_brick', ''},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
+			{'', 'stairs:slab_marble_brick', ''},
 		}
 	},
 }
