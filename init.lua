@@ -347,6 +347,13 @@ local pavements= {
 			{'', 'stairs:slab_marble_brick_polished', ''},
 		}
 	},
+	{name= "jonez:pebbled_medieval_pavement", description= "Ancient Pebbled Medieval Pavement", texture= "jonez_pebbled_medieval_pavement.png",
+		recipe = {
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', ''},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
+			{'', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
+		}
+	},
 	{name= "jonez:pebbled_wall", description= "Ancient Pebbled Wall", texture= "jonez_pebbled_wall.png",
 		recipe = {
 			{'', 'stairs:slab_marble_brick_polished', ''},
