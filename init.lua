@@ -131,7 +131,8 @@ local styles = {
 	"artdeco",
 	"minoan",
 	"attic",
-	"versailles"
+	"versailles",
+	"medieval"
 }
 
 --The chisel to carve the marble
