@@ -1,10 +1,7 @@
-jonez = {}
-
 --Variables
-local modname = "jonez"
 local S = minetest.get_translator(minetest.get_current_modname())
 
-function firstToUpper(str)
+local function firstToUpper(str)
     return (str:gsub("^%l", string.upper))
 end
 
@@ -116,8 +113,8 @@ minetest.register_ore({
 	clust_scarcity = 7*7*7,
 	clust_num_ores = 5,
 	clust_size = 3,
-	height_min = -31000,
-	height_max = -1000,
+	height_min = -512,
+	height_max = -65,
 	flags = "absheight",
 })
 
