@@ -130,7 +130,8 @@ local styles = {
 	"attic",
 	"versailles",
 	"medieval",
-	"gothic"
+	"gothic",
+	"pompeiian"
 }
 
 --The chisel to carve the marble
@@ -373,6 +374,34 @@ local pavements= {
 			{'', 'stairs:slab_marble_brick', ''},
 		}
 	},
+	{name= "jonez:pompeiian_wall", description= "Ancient Pompeiian Wall", texture= "jonez_pompeiian_wall.png",
+		recipe = {
+			{'', 'stairs:slab_marble_brick_polished', ''},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
+			{'', 'stairs:slab_marble_brick_polished', ''},
+		}
+	},
+	{name= "jonez:pompeiian_pavement", description= "Ancient Pompeiian Pavement", texture= "jonez_pompeiian_pavement.png",
+		recipe = {
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
+		}
+	},
+	{name= "jonez:pompeiian_path", description= "Ancient Pompeiian Path", texture= "jonez_pompeiian_path.png", amount = 4,
+		recipe = {
+			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
+		}
+	},
+	{name= "jonez:pompeiian_path", description= "Ancient Pompeiian Path", texture= "jonez_pompeiian_path.png", amount = 4,
+		recipe = {
+			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
+		}
+	},
 }
 
 for i = 1, #pavements do
@@ -383,8 +412,14 @@ for i = 1, #pavements do
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
 	})
+	local amount
+	if pavements[i].amount then
+		amount = " ".. tostring(pavements[i].amount)
+	else
+		amount = "1"
+	end
 	minetest.register_craft({
-		output = pavements[i].name,
+		output = pavements[i].name .. amount,
 		type = 'shaped',
 		recipe = pavements[i].recipe,
 	})
@@ -458,5 +493,23 @@ minetest.register_craft({
 		'jonez:diamond_pavement', 'stairs:slab_marble_brick', 'jonez:diamond_pavement',
 		'stairs:slab_marble_brick', 'jonez:diamond_pavement', 'stairs:slab_marble_brick',
 		'jonez:diamond_pavement', 'stairs:slab_marble_brick', 'jonez:diamond_pavement',
+	},
+})
+
+minetest.register_node("jonez:pompeiian_altar", {
+	description = S("Ancient Pompeiian Altar"),
+	tiles = {"jonez_pompeiian_top_bottom.png", "jonez_pompeiian_top_bottom.png", "jonez_pompeiian_altar.png"},
+	is_ground_content = false,
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craft({
+	output = 'jonez:pompeiian_altar',
+	type = "shaped",
+	recipe = {
+		{'', '', ''},
+		{'', 'stairs:slab_marble_brick_polished', ''},
+		{'', 'jonez:marble_polished', ''},
 	},
 })
