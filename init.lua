@@ -131,7 +131,8 @@ local styles = {
 	"versailles",
 	"medieval",
 	"gothic",
-	"pompeiian"
+	"pompeiian",
+	"corinthian"
 }
 
 --The chisel to carve the marble
@@ -149,6 +150,48 @@ minetest.register_craft({
 		{"", "default:steel_ingot", ""},
 		{"default:stick", "", ""},
 	}
+})
+
+-- The Crafting of the Greek Set
+
+minetest.register_craft({
+    output = 'jonez:greek_shaft 3',
+    type = "shaped",
+    recipe = {
+        {'', 'jonez:marble_polished', ''},
+        {'', 'jonez:marble_polished', ''},
+        {'', 'jonez:marble_polished', ''},
+    },
+})
+
+minetest.register_craft({
+    output = 'jonez:greek_architrave 3',
+    type = "shaped",
+    recipe = {
+        {'', '', ''},
+        {'', '', ''},
+        {'stairs:slab_marble_polished', 'stairs:slab_marble_polished', 'stairs:slab_marble_polished'},
+    },
+})
+
+minetest.register_craft({
+    output = 'jonez:greek_base 2',
+    type = "shaped",
+    recipe = {
+        {'', '', ''},
+        {'', 'jonez:marble_polished', ''},
+        {'', 'stairs:slab_marble_polished', ''},
+    },
+})
+
+minetest.register_craft({
+    output = 'jonez:greek_capital 2',
+    type = "shaped",
+    recipe = {
+        {'', '', ''},
+        {'', 'stairs:slab_marble_polished', ''},
+        {'', 'jonez:marble_polished', ''},
+    },
 })
 
 local function save_meta(pos, i, element)
@@ -275,21 +318,21 @@ local panels = {
 			{"dye:green", "dye:red", "dye:orange"},
 		}
 	},
-	{name= "jonez:wrought_lattice_bottom", description= "Ancient Wrought Lattice (Bottom)",textures={front="jonez_wrought_lattice_bottom.png", edge="jonez_panes_edge.png"},
+	{name= "wrought_lattice_bottom", description= "Ancient Wrought Lattice (Bottom)",textures={front="jonez_wrought_lattice_bottom.png", edge="jonez_panes_edge.png"},
 		recipe = {
 			{'', '', ''},
 			{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
 			{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
 		}
 	},
-	{name= "jonez:palace_window_top", description= "Palace Window (Top)",textures={front="jonez_palace_window_top.png", edge="default_wood.png"},
+	{name= "palace_window_top", description= "Palace Window (Top)",textures={front="jonez_palace_window_top.png", edge="default_wood.png"},
 		recipe = {
 			{'', 'xpanes:pane_flat', ''},
 			{'', 'xpanes:pane_flat', ''},
 			{'', '', ''},
 		}
 	},
-	{name= "jonez:palace_window_bottom", description= "Palace Window (Bottom)",textures={front="jonez_palace_window_bottom.png", edge="default_wood.png"},
+	{name= "palace_window_bottom", description= "Palace Window (Bottom)",textures={front="jonez_palace_window_bottom.png", edge="default_wood.png"},
 		recipe = {
 			{'', '', ''},
 			{'', 'xpanes:pane_flat', ''},
