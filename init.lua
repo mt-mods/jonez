@@ -1,6 +1,6 @@
 --Variables
 local mod_path = minetest.get_modpath(minetest.get_current_modname())
-local chisel = dofile(mod_path .. "/chisel.lua")
+dofile(mod_path .. "/chisel.lua")
 local S = minetest.get_translator(minetest.get_current_modname())
 
 local function firstToUpper(str)
