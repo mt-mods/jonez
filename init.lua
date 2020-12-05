@@ -132,8 +132,6 @@ local styles = {
 	"corinthian"
 }
 
-
-
 -- The Crafting of the Greek Set
 
 minetest.register_craft({
@@ -175,8 +173,6 @@ minetest.register_craft({
 		{'', 'jonez:marble_polished', ''},
 	},
 })
-
-
 
 for i = 1, #styles do
 
@@ -451,7 +447,6 @@ minetest.register_node("jonez:versailles_pavement", {
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
 })
-
 
 minetest.register_craft({
 	output = 'jonez:versailles_pavement',
