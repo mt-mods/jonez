@@ -129,7 +129,8 @@ local styles = {
 	"medieval",
 	"gothic",
 	"pompeiian",
-	"corinthian"
+	"corinthian",
+	"carthaginian"
 }
 
 -- The Crafting of the Greek Set
