@@ -372,16 +372,23 @@ local pavements= {
 	},
 	{name= "jonez:pompeiian_path", description= "Ancient Pompeiian Path", texture= "jonez_pompeiian_path.png", amount = 4,
 		recipe = {
-			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
-			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
-			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
 		}
 	},
-	{name= "jonez:pompeiian_path", description= "Ancient Pompeiian Path", texture= "jonez_pompeiian_path.png", amount = 4,
+	{name= "jonez:carthaginian_pavement", description= "Carthaginian Pavement", texture= "jonez_carthaginian_pavement.png", amount = 4,
 		recipe = {
-			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
-			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
-			{'stairs:slab_marble_brick', 'default:gravel', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
+		}
+	},
+	{name= "jonez:carthaginian_wall", description= "Carthaginian Wall", texture= "jonez_carthaginian_wall.png", amount = 4,
+		recipe = {
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
+			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
 		}
 	},
 }
