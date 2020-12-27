@@ -131,7 +131,8 @@ local styles = {
 	"pompeiian",
 	"corinthian",
 	"carthaginian",
-	"industrial"
+	"industrial",
+	"romanesque"
 }
 
 -- The Crafting of the Greek Set
