@@ -133,7 +133,8 @@ local styles = {
 	"carthaginian",
 	"industrial",
 	"romanesque",
-	"cimmerian"
+	"cimmerian",
+	"nubian"
 }
 
 -- The Crafting of the Greek Set
@@ -400,6 +401,13 @@ local pavements= {
 			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
 			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
+		}
+	},
+	{name= "jonez:nubian_wall", description= "Nubian Wall", texture= "jonez_nubian_wall.png", amount = 9,
+		recipe = {
+			{'default:sandstonebrick', 'default:sandstonebrick', 'default:sandstonebrick'},
+			{'default:sandstonebrick', 'default:sandstonebrick', 'default:sandstonebrick'},
+			{'default:sandstonebrick', 'default:sandstonebrick', 'default:sandstonebrick'},
 		}
 	},
 }

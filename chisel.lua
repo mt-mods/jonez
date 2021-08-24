@@ -1,10 +1,11 @@
-chisel = {}
 local S = minetest.get_translator(minetest.get_current_modname())
 
-chisel.chiselable = {}
-chisel.group_style_index = {}
-chisel.group_style_nodes = {}
-chisel.player_copied_style = {}
+chisel = {
+	chiselable = {},
+	group_style_index = {},
+	group_style_nodes = {},
+	player_copied_style = {},
+}
 
 chisel.register_chiselable = function(node_name, group_name, style)
 	chisel.chiselable[ node_name ] = {}
