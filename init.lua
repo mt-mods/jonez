@@ -423,12 +423,12 @@ for i = 1, #pavements do
 	})
 	local amount
 	if pavements[i].amount then
-		amount = " ".. tostring(pavements[i].amount)
+		amount = tostring(pavements[i].amount)
 	else
 		amount = "1"
 	end
 	minetest.register_craft({
-		output = pavements[i].name .. amount,
+		output = pavements[i].name .. " " .. amount,
 		type = 'shaped',
 		recipe = pavements[i].recipe,
 	})
