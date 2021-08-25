@@ -134,7 +134,8 @@ local styles = {
 	"industrial",
 	"romanesque",
 	"cimmerian",
-	"nubian"
+	"nubian",
+	"norman"
 }
 
 -- The Crafting of the Greek Set
