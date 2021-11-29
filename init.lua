@@ -1,13 +1,15 @@
 --Variables
-local mod_path = minetest.get_modpath(minetest.get_current_modname())
-dofile(mod_path .. "/chisel.lua")
-local S = minetest.get_translator(minetest.get_current_modname())
+jonez = {}
+local mod_name = minetest.get_current_modname()
+local mod_path = minetest.get_modpath(mod_name)
+local S = minetest.get_translator(mod_name)
+assert(loadfile(mod_path .. "/chisel.lua"))(S)
 
 local function firstToUpper(str)
 	return (str:gsub("^%l", string.upper))
 end
 
-chisel.register_chiselable("jonez:marble", "jonez:marble", "raw" )
+jonez.chisel.register_chiselable("jonez:marble", "jonez:marble", "raw" )
 minetest.register_node("jonez:marble", {
 	description = S("Ancient Marble"),
 	tiles = {"jonez_marble.png"},
@@ -16,7 +18,7 @@ minetest.register_node("jonez:marble", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-chisel.register_chiselable("jonez:marble_polished", "jonez:marble", "polished" )
+jonez.chisel.register_chiselable("jonez:marble_polished", "jonez:marble", "polished" )
 minetest.register_node("jonez:marble_polished", {
 	description = S("Ancient Polished Marble"),
 	tiles = {"jonez_marble_polished.png"},
@@ -25,7 +27,7 @@ minetest.register_node("jonez:marble_polished", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-chisel.register_chiselable_stair_and_slab("marble", "marble", "raw" )
+jonez.chisel.register_chiselable_stair_and_slab("marble", "marble", "raw" )
 stairs.register_stair_and_slab(
 	"marble",
 	"jonez:marble",
@@ -36,7 +38,7 @@ stairs.register_stair_and_slab(
 	default.node_sound_stone_defaults()
 )
 
-chisel.register_chiselable_stair_and_slab("marble_brick", "marble_brick", "raw" )
+jonez.chisel.register_chiselable_stair_and_slab("marble_brick", "marble_brick", "raw" )
 stairs.register_stair_and_slab(
 	"marble_brick",
 	"jonez:marble_brick",
@@ -47,7 +49,7 @@ stairs.register_stair_and_slab(
 	default.node_sound_stone_defaults()
 )
 
-chisel.register_chiselable("jonez:marble_brick", "jonez:marble_brick", "raw" )
+jonez.chisel.register_chiselable("jonez:marble_brick", "jonez:marble_brick", "raw" )
 minetest.register_node("jonez:marble_brick", {
 	description = S("Ancient Marble Brick"),
 	tiles = {"jonez_marble_brick.png"},
@@ -56,7 +58,7 @@ minetest.register_node("jonez:marble_brick", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-chisel.register_chiselable("jonez:marble_brick_polished", "jonez:marble_brick", "polished" )
+jonez.chisel.register_chiselable("jonez:marble_brick_polished", "jonez:marble_brick", "polished" )
 minetest.register_node("jonez:marble_brick_polished", {
 	description = S("Ancient Marble Polished Brick"),
 	tiles = {"jonez_marble_brick_polished.png"},
@@ -65,7 +67,7 @@ minetest.register_node("jonez:marble_brick_polished", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-chisel.register_chiselable_stair_and_slab("marble_polished", "marble", "polished" )
+jonez.chisel.register_chiselable_stair_and_slab("marble_polished", "marble", "polished" )
 stairs.register_stair_and_slab(
 	"marble_polished",
 	"jonez:marble_polished",
@@ -76,7 +78,7 @@ stairs.register_stair_and_slab(
 	default.node_sound_stone_defaults()
 )
 
-chisel.register_chiselable_stair_and_slab("marble_brick_polished", "marble_brick", "polished" )
+jonez.chisel.register_chiselable_stair_and_slab("marble_brick_polished", "marble_brick", "polished" )
 stairs.register_stair_and_slab(
 	"marble_brick_polished",
 	"jonez:marble_brick_polished",
@@ -183,37 +185,41 @@ minetest.register_craft({
 
 for i = 1, #styles do
 
-	chisel.register_chiselable("jonez:"..styles[i].."_architrave", "jonez:architrave", styles[i] )
+	jonez.chisel.register_chiselable("jonez:"..styles[i].."_architrave", "jonez:architrave", styles[i] )
 	minetest.register_node("jonez:"..styles[i].."_architrave", {
 		description = S("Ancient").." "..S(firstToUpper(styles[i])).." "..S("Architrave"),
-		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_architrave.png"},
+		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..
+			styles[i].."_architrave.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
 	})
 
-	chisel.register_chiselable("jonez:"..styles[i].."_capital", "jonez:capital", styles[i] )
+	jonez.chisel.register_chiselable("jonez:"..styles[i].."_capital", "jonez:capital", styles[i] )
 	minetest.register_node("jonez:"..styles[i].."_capital", {
 		description = S("Ancient").." "..S(firstToUpper(styles[i])).." "..S("Capital"),
-		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_capital.png"},
+		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i]..
+			"_capital.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
 	})
 
-	chisel.register_chiselable("jonez:"..styles[i].."_shaft", "jonez:shaft", styles[i] )
+	jonez.chisel.register_chiselable("jonez:"..styles[i].."_shaft", "jonez:shaft", styles[i] )
 	minetest.register_node("jonez:"..styles[i].."_shaft", {
 		description = S("Ancient").." "..S(firstToUpper(styles[i])).." "..S("Shaft"),
-		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_shaft.png"},
+		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i]..
+			"_shaft.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
 	})
 
-	chisel.register_chiselable("jonez:"..styles[i].."_base", "jonez:base", styles[i] )
+	jonez.chisel.register_chiselable("jonez:"..styles[i].."_base", "jonez:base", styles[i] )
 	minetest.register_node("jonez:"..styles[i].."_base", {
 		description = S("Ancient").." "..S(firstToUpper(styles[i])).." "..S("Base"),
-		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_base.png"},
+		tiles = {"jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i].."_top_bottom.png", "jonez_"..styles[i]..
+			"_base.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
 		sounds = default.node_sound_stone_defaults(),
@@ -250,14 +256,16 @@ for i = 1, #vines do
 end
 
 local panels = {
-	{name= "jonez_panel_1", description= "Mosaic Glass Panel", textures={front= "jonez_panel_1.png", edge="jonez_panes_edge.png"},
+	{name= "jonez_panel_1", description= "Mosaic Glass Panel", textures={front= "jonez_panel_1.png",
+		edge="jonez_panes_edge.png"},
 		recipe = {
 			{"dye:blue", "dye:black", "dye:pink"},
 			{"dye:red", "xpanes:pane_flat", "dye:green"},
 			{"dye:yellow", "dye:black", "dye:orange"},
 		}
 	},
-	{name= "jonez_panel_2", description= "Blossom Glass Panel", textures={front="jonez_panel_2.png", edge="jonez_panes_edge.png"},
+	{name= "jonez_panel_2", description= "Blossom Glass Panel", textures={front="jonez_panel_2.png",
+		edge="jonez_panes_edge.png"},
 		recipe = {
 			{"dye:blue", "dye:red", "dye:green"},
 			{"dye:yellow", "xpanes:pane_flat", "dye:yellow"},
@@ -338,18 +346,22 @@ local pavements= {
 	{name= "jonez:pebbled_pavement", description= "Ancient Pebbled Pavement", texture= "jonez_pebbled_pavement.png",
 		recipe = {
 			{'', 'stairs:slab_marble_brick_polished', ''},
-			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished',
+			'stairs:slab_marble_brick_polished'},
 			{'', 'stairs:slab_marble_brick_polished', ''},
 		}
 	},
-	{name= "jonez:pebbled_medieval_pavement", description= "Ancient Pebbled Medieval Pavement", texture= "jonez_pebbled_medieval_pavement.png",
+	{name= "jonez:pebbled_medieval_pavement", description= "Ancient Pebbled Medieval Pavement",
+		texture= "jonez_pebbled_medieval_pavement.png",
 		recipe = {
 			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', ''},
-			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished',
+				'stairs:slab_marble_brick_polished'},
 			{'', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
 		}
 	},
-	{name= "jonez:pebbled_gothic_pavement", description= "Ancient Pebbled Gothic Pavement", texture= "jonez_pebbled_gothic_pavement.png",
+	{name= "jonez:pebbled_gothic_pavement", description= "Ancient Pebbled Gothic Pavement",
+		texture= "jonez_pebbled_gothic_pavement.png",
 		recipe = {
 			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', ''},
 			{'', 'stairs:slab_marble_brick_polished', ''},
@@ -359,7 +371,8 @@ local pavements= {
 	{name= "jonez:pebbled_wall", description= "Ancient Pebbled Wall", texture= "jonez_pebbled_wall.png",
 		recipe = {
 			{'', 'stairs:slab_marble_brick_polished', ''},
-			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished'},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished',
+				'stairs:slab_marble_brick_polished'},
 			{'', 'stairs:slab_marble_brick_polished', ''},
 		}
 	},
@@ -377,28 +390,32 @@ local pavements= {
 			{'', 'stairs:slab_marble_brick_polished', ''},
 		}
 	},
-	{name= "jonez:pompeiian_pavement", description= "Ancient Pompeiian Pavement", texture= "jonez_pompeiian_pavement.png",
+	{name= "jonez:pompeiian_pavement", description= "Ancient Pompeiian Pavement",
+		texture= "jonez_pompeiian_pavement.png",
 		recipe = {
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
 		}
 	},
-	{name= "jonez:pompeiian_path", description= "Ancient Pompeiian Path", texture= "jonez_pompeiian_path.png", amount = 4,
+	{name= "jonez:pompeiian_path", description= "Ancient Pompeiian Path", texture= "jonez_pompeiian_path.png",
+		amount = 4,
 		recipe = {
 			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
 			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
 		}
 	},
-	{name= "jonez:carthaginian_pavement", description= "Carthaginian Pavement", texture= "jonez_carthaginian_pavement.png", amount = 4,
+	{name= "jonez:carthaginian_pavement", description= "Carthaginian Pavement",
+		texture= "jonez_carthaginian_pavement.png", amount = 4,
 		recipe = {
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick'},
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},
 		}
 	},
-	{name= "jonez:carthaginian_wall", description= "Carthaginian Wall", texture= "jonez_carthaginian_wall.png", amount = 4,
+	{name= "jonez:carthaginian_wall", description= "Carthaginian Wall", texture= "jonez_carthaginian_wall.png",
+		amount = 4,
 		recipe = {
 			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished'},
 			{'stairs:slab_marble_brick', 'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick'},

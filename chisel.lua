@@ -1,40 +1,44 @@
-local S = minetest.get_translator(minetest.get_current_modname())
+local S = ...
 
-chisel = {
+jonez.chisel = {
 	chiselable = {},
 	group_style_index = {},
 	group_style_nodes = {},
 	player_copied_style = {},
 }
 
-chisel.register_chiselable = function(node_name, group_name, style)
-	chisel.chiselable[ node_name ] = {}
-	chisel.chiselable[ node_name ].group_name = group_name
-	chisel.chiselable[ node_name ].style = style
+jonez.chisel.register_chiselable = function(node_name, group_name, style)
+	jonez.chisel.chiselable[node_name] = {}
+	jonez.chisel.chiselable[node_name].group_name = group_name
+	jonez.chisel.chiselable[node_name].style = style
 
-	if not chisel.group_style_nodes[ group_name ] then
-		chisel.group_style_nodes[ group_name ] = {}
+	if not jonez.chisel.group_style_nodes[group_name] then
+		jonez.chisel.group_style_nodes[group_name] = {}
 	end
 
-	chisel.group_style_nodes[ group_name ][ style ] = node_name
+	jonez.chisel.group_style_nodes[group_name][style] = node_name
 end
 
-chisel.register_chiselable_stair_and_slab = function(node_subname, group_subname, style)
-	chisel.register_chiselable("stairs:stair_" .. node_subname, "stairs:stair_" .. group_subname, style)
-	chisel.register_chiselable("stairs:stair_inner_" .. node_subname, "stairs:stair_inner_" .. group_subname, style)
-	chisel.register_chiselable("stairs:stair_outer_" .. node_subname, "stairs:stair_outer_" .. group_subname, style)
-	chisel.register_chiselable("stairs:slab_" .. node_subname, "stairs:slab_" .. group_subname, style)
+jonez.chisel.register_chiselable_stair_and_slab = function(node_subname, group_subname, style)
+	jonez.chisel.register_chiselable("stairs:stair_" .. node_subname, "stairs:stair_" .. group_subname, style)
+	jonez.chisel.register_chiselable("stairs:stair_inner_" .. node_subname, "stairs:stair_inner_" .. group_subname, style)
+	jonez.chisel.register_chiselable("stairs:stair_outer_" .. node_subname, "stairs:stair_outer_" .. group_subname, style)
+	jonez.chisel.register_chiselable("stairs:slab_" .. node_subname, "stairs:slab_" .. group_subname, style)
 end
 
 local function chisel_interact(player, pointed_thing, is_right_click)
-	if pointed_thing.type ~= "node" then return end
+	if pointed_thing.type ~= "node" then
+		return
+	end
 
 	local pos = pointed_thing.under
 	local is_sneak = player and player:get_player_control().sneak or false
 	local player_name = player and player:get_player_name()
 
 	-- A true player is required
-	if not player_name then return end
+	if not player_name then
+		return
+	end
 
 	-- Check for node protection
 	if minetest.is_protected(pos, player_name) then
@@ -47,35 +51,37 @@ local function chisel_interact(player, pointed_thing, is_right_click)
 	local node = minetest.get_node(pos)
 	local node_name = node.name
 
-	if not chisel.chiselable[ node_name ] then
+	if not jonez.chisel.chiselable[node_name] then
 		minetest.chat_send_player(player_name, "Not chiselable")
 		return
 	end
 
-	local group_name = chisel.chiselable[ node_name ].group_name
-	local style = chisel.chiselable[ node_name ].style
-	local group = chisel.group_style_nodes[ group_name ]
-	local new_style , new_node_name
+	local group_name = jonez.chisel.chiselable[node_name].group_name
+	local style = jonez.chisel.chiselable[node_name].style
+	local group = jonez.chisel.group_style_nodes[group_name]
+	local new_style, new_node_name
 
 	-- Now branch on the four user-input cases
 	if is_right_click then
 		if is_sneak then
 			-- Copy style
-			chisel.player_copied_style[ player_name ] = style
+			jonez.chisel.player_copied_style[player_name] = style
 			minetest.chat_send_player(player_name, "Chisel style " .. style .. " copied")
 			return
 		else
 			-- Paste style
-			new_style = chisel.player_copied_style[ player_name ]
+			new_style = jonez.chisel.player_copied_style[player_name]
 			if not new_style then
 				minetest.chat_send_player(player_name, "No chisel style copied yet, use sneak + right-click to copy a style")
 				return
 			end
 
 			-- Already the correct style, exit now!
-			if new_style == style then return end
+			if new_style == style then
+				return
+			end
 
-			new_node_name = group[ new_style ]
+			new_node_name = group[new_style]
 			if not new_node_name then
 				minetest.chat_send_player(player_name, "Chisel style " .. new_style ..
 					" is not supported by this chisel group " .. group_name)

@@ -3,6 +3,7 @@ allow_defined_top = false
 
 globals = {
     "minetest",
+    "jonez",
     "stairs",
     "xpanes"
 }
