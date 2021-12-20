@@ -540,3 +540,30 @@ minetest.register_craft({
 		{'', 'jonez:marble_polished', ''},
 	},
 })
+
+minetest.register_node("jonez:censer", {
+	description = S("Censer"),
+    tiles = {"jonez_censer_top.png", "jonez_censer_top.png", "jonez_censer_front.png"},
+    drawtype = "nodebox",
+    paramtype = "light",
+    node_box = {
+        type = "fixed",
+        fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.375, 0.5}, -- NodeBox1
+			{-0.4375, -0.375, -0.4375, 0.4375, -0.3125, 0.4375}, -- NodeBox2
+			{-0.375, -0.3125, -0.375, 0.375, -0.25, 0.375}, -- NodeBox3
+			{-0.3125, -0.3125, -0.3125, 0.3125, 0.25, 0.3125}, -- NodeBox4
+			{-0.375, 0.25, -0.375, 0.375, 0.3125, 0.375}, -- NodeBox5
+			{-0.4375, 0.3125, -0.4375, 0.4375, 0.375, -0.375}, -- NodeBox6
+			{-0.5, 0.375, -0.5, 0.5, 0.5, -0.4375}, -- NodeBox7
+			{-0.4375, 0.3125, 0.375, 0.4375, 0.375, 0.4375}, -- NodeBox8
+			{-0.5, 0.375, 0.4375, 0.5, 0.5, 0.5}, -- NodeBox9
+			{0.375, 0.3125, -0.4375, 0.4375, 0.375, 0.4375}, -- NodeBox10
+			{0.4375, 0.375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox11
+			{-0.5, 0.375, -0.5, -0.4375, 0.5, 0.5}, -- NodeBox12
+			{-0.4375, 0.3125, -0.4375, -0.3125, 0.375, 0.4375}, -- NodeBox13
+         },
+    },
+    groups = {cracky=1},
+})
+
