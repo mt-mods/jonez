@@ -192,6 +192,7 @@ for i = 1, #styles do
 			styles[i].."_architrave.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
+		paramtype2 = "facedir",
 		sounds = default.node_sound_stone_defaults(),
 	})
 
@@ -202,6 +203,7 @@ for i = 1, #styles do
 			"_capital.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
+		paramtype2 = "facedir",
 		sounds = default.node_sound_stone_defaults(),
 	})
 
@@ -212,6 +214,7 @@ for i = 1, #styles do
 			"_shaft.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
+		paramtype2 = "facedir",
 		sounds = default.node_sound_stone_defaults(),
 	})
 
@@ -222,6 +225,7 @@ for i = 1, #styles do
 			"_base.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
+		paramtype2 = "facedir",
 		sounds = default.node_sound_stone_defaults(),
 	})
 end
