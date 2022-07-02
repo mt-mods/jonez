@@ -38,6 +38,15 @@ stairs.register_stair_and_slab(
 	default.node_sound_stone_defaults()
 )
 
+jonez.chisel.register_chiselable("jonez:marble_brick", "jonez:marble_brick", "raw" )
+minetest.register_node("jonez:marble_brick", {
+	description = S("Ancient Marble Brick"),
+	tiles = {"jonez_marble_brick.png"},
+	is_ground_content = false,
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+})
+
 jonez.chisel.register_chiselable_stair_and_slab("marble_brick", "marble_brick", "raw" )
 stairs.register_stair_and_slab(
 	"marble_brick",
@@ -48,15 +57,6 @@ stairs.register_stair_and_slab(
 	S("Ancient Marble Brick Slab"),
 	default.node_sound_stone_defaults()
 )
-
-jonez.chisel.register_chiselable("jonez:marble_brick", "jonez:marble_brick", "raw" )
-minetest.register_node("jonez:marble_brick", {
-	description = S("Ancient Marble Brick"),
-	tiles = {"jonez_marble_brick.png"},
-	is_ground_content = false,
-	groups = {cracky=3},
-	sounds = default.node_sound_stone_defaults(),
-})
 
 jonez.chisel.register_chiselable("jonez:marble_brick_polished", "jonez:marble_brick", "polished" )
 minetest.register_node("jonez:marble_brick_polished", {
@@ -192,6 +192,7 @@ for i = 1, #styles do
 			styles[i].."_architrave.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
+		paramtype2 = "facedir",
 		sounds = default.node_sound_stone_defaults(),
 	})
 
@@ -202,6 +203,7 @@ for i = 1, #styles do
 			"_capital.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
+		paramtype2 = "facedir",
 		sounds = default.node_sound_stone_defaults(),
 	})
 
@@ -212,6 +214,7 @@ for i = 1, #styles do
 			"_shaft.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
+		paramtype2 = "facedir",
 		sounds = default.node_sound_stone_defaults(),
 	})
 
@@ -222,6 +225,7 @@ for i = 1, #styles do
 			"_base.png"},
 		is_ground_content = false,
 		groups = {cracky=3},
+		paramtype2 = "facedir",
 		sounds = default.node_sound_stone_defaults(),
 	})
 end
