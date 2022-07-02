@@ -167,3 +167,75 @@ minetest.register_craft({
 	}
 })
 
+if minetest.get_modpath("unified_inventory") then
+	unified_inventory.register_craft_type("jonez:chisel", {
+		description = S("Chisel for Marble"),
+		icon = "jonez_chisel.png",
+		width = 1,
+		height = 1,
+	})
+
+	minetest.register_on_mods_loaded(function()
+		for _, group in pairs(jonez.chisel.group_style_nodes) do
+			local prev_node
+			local first_node
+
+			for _, node in pairs(group) do
+				if not first_node then
+					first_node = node
+				end
+				if prev_node then
+					minetest.log("warning", ("[jonez] chisel recipe %s -> %s"):format(node, prev_node))
+					unified_inventory.register_craft({
+						type = "jonez:chisel",
+						output = node,
+						items = {prev_node},
+						width = 1,
+					})
+				end
+				prev_node = node
+			end
+
+			unified_inventory.register_craft({
+				type = "jonez:chisel",
+				output = first_node,
+				items = {prev_node},
+				width = 1,
+			})
+		end
+	end)
+end
+
+if minetest.get_modpath("i3") then
+	i3.register_craft_type("jonez:chisel", {
+		description = S("Chisel for Marble"),
+		icon = "jonez_chisel.png",
+	})
+
+	minetest.register_on_mods_loaded(function()
+		for _, group in pairs(jonez.chisel.group_style_nodes) do
+			local prev_node
+			local first_node
+
+			for _, node in pairs(group) do
+				if not first_node then
+					first_node = node
+				end
+				if prev_node then
+					i3.register_craft({
+						type = "jonez:chisel",
+						result = node,
+						items = {prev_node},
+					})
+				end
+				prev_node = node
+			end
+
+			i3.register_craft({
+				type = "jonez:chisel",
+				result = first_node,
+				items = {prev_node},
+			})
+		end
+	end)
+end
