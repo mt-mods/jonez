@@ -185,7 +185,7 @@ if minetest.get_modpath("unified_inventory") then
 					first_node = node
 				end
 				if prev_node then
-					minetest.log("warning", ("[jonez] chisel recipe %s -> %s"):format(node, prev_node))
+					minetest.log("verbose", ("[jonez] chisel recipe %s -> %s"):format(node, prev_node))
 					unified_inventory.register_craft({
 						type = "jonez:chisel",
 						output = node,
