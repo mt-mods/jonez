@@ -246,7 +246,7 @@ for i = 1, #vines do
 		paramtype = "light",
 		paramtype2 = "facedir",
 		tiles = {vines[i].texture},
-		use_texture_alpha = true,
+		use_texture_alpha = "clip",
 		inventory_image = vines[i].texture,
 		wield_image = vines[i].texture,
 		node_box = {
@@ -279,7 +279,7 @@ local panels = {
 	},
 	{name= "wrought_lattice_bottom", description= "Ancient Wrought Lattice (Bottom)",
 		textures={front="jonez_wrought_lattice_bottom.png", edge="jonez_panes_edge.png"},
-		use_texture_alpha = true,
+		use_texture_alpha = "clip",
 		recipe = {
 			{'', '', ''},
 			{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
@@ -288,7 +288,7 @@ local panels = {
 	},
 	{name= "palace_window_top", description= "Palace Window (Top)",
 		textures={front="jonez_palace_window_top.png", edge="default_wood.png"},
-		use_texture_alpha = true,
+		use_texture_alpha = "clip",
 		recipe = {
 			{'', 'xpanes:pane_flat', ''},
 			{'', 'xpanes:pane_flat', ''},
@@ -297,7 +297,7 @@ local panels = {
 	},
 	{name= "palace_window_bottom", description= "Palace Window (Bottom)",
 		textures={front="jonez_palace_window_bottom.png", edge="default_wood.png"},
-		use_texture_alpha = true,
+		use_texture_alpha = "clip",
 		recipe = {
 			{'', '', ''},
 			{'', 'xpanes:pane_flat', ''},
@@ -480,7 +480,7 @@ minetest.register_node("jonez:wrought_lattice_top", {
 		"jonez_wrought_lattice_top.png",
 		"jonez_wrought_lattice_top.png"
 	},
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
 })
 
 minetest.register_craft({
