@@ -27,18 +27,14 @@ jonez.chisel.register_chiselable_stair_and_slab = function(node_subname, group_s
 end
 
 local function chisel_interact(player, pointed_thing, is_right_click)
+	if not player then return end
 	if pointed_thing.type ~= "node" then
 		return
 	end
 
 	local pos = pointed_thing.under
-	local is_sneak = player and player:get_player_control().sneak or false
-	local player_name = player and player:get_player_name()
-
-	-- A true player is required
-	if not player_name then
-		return
-	end
+	local is_sneak = player:get_player_control().sneak or false
+	local player_name = player:get_player_name()
 
 	-- Check for node protection
 	if minetest.is_protected(pos, player_name) then
@@ -91,24 +87,23 @@ local function chisel_interact(player, pointed_thing, is_right_click)
 	else
 		if is_sneak then
 			-- Backward cycle mode
-			for k,v in pairs(group) do
+			for _,v in pairs(group) do
 				if v == node_name then break end
-				new_style = k
 				new_node_name = v
 			end
 
 			if new_node_name == nil then
 				-- Not found? Go for the last element
-				for k,v in pairs(group) do
-					new_style = k
+				for _,v in pairs(group) do
 					new_node_name = v
 				end
 			end
 		else
 			-- Forward cycle mode
-			new_style , new_node_name = next(group,style)
+			local _
+			_, new_node_name = next(group,style)
 			if new_node_name == nil then
-				new_style , new_node_name = next(group)
+				_, new_node_name = next(group)
 			end
 		end
 	end
