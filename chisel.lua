@@ -100,10 +100,9 @@ local function chisel_interact(player, pointed_thing, is_right_click)
 			end
 		else
 			-- Forward cycle mode
-			local _
-			_, new_node_name = next(group,style)
+			new_node_name = select(2, next(group, style))
 			if new_node_name == nil then
-				_, new_node_name = next(group)
+				new_node_name = select(2, next(group))
 			end
 		end
 	end
