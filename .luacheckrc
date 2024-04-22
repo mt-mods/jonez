@@ -3,8 +3,6 @@ globals = {
 }
 
 read_globals = {
-	string = {fields = {"split"}},
-	table = {fields = {"copy", "getn"}},
 	"minetest",
 	"default",
 	"i3",
