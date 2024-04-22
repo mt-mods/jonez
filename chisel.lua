@@ -33,7 +33,7 @@ local function chisel_interact(player, pointed_thing, is_right_click)
 	end
 
 	local pos = pointed_thing.under
-	local is_sneak = player:get_player_control().sneak or false
+	local is_sneak = player:get_player_control().sneak
 	local player_name = player:get_player_name()
 
 	-- Check for node protection
