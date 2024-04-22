@@ -1,21 +1,12 @@
-unused_args = false
-allow_defined_top = false
-
 globals = {
-    "minetest",
-    "jonez",
-    "stairs",
-    "xpanes"
+	"jonez",
 }
 
 read_globals = {
-    string = {fields = {"split"}},
-    table = {fields = {"copy", "getn"}},
-
-    -- Builtin
-    "vector", "ItemStack",
-    "dump", "DIR_DELIM", "VoxelArea", "Settings",
-
-    -- MTG
-    "default", "sfinv", "creative",
+	"minetest",
+	"default",
+	"i3",
+	"stairs",
+	"unified_inventory",
+	"xpanes",
 }
