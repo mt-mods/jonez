@@ -290,8 +290,8 @@ local panels = {
 		textures={front="jonez_palace_window_top.png", edge="default_wood.png"},
 		use_texture_alpha = "clip",
 		recipe = {
-			{'', 'xpanes:pane_flat', ''},
-			{'', 'xpanes:pane_flat', ''},
+			{'xpanes:pane_flat', 'xpanes:pane_flat', 'xpanes:pane_flat'},
+			{'xpanes:pane_flat', '', 'xpanes:pane_flat'},
 			{'', '', ''},
 		}
 	},
@@ -300,8 +300,8 @@ local panels = {
 		use_texture_alpha = "clip",
 		recipe = {
 			{'', '', ''},
-			{'', 'xpanes:pane_flat', ''},
-			{'', 'xpanes:pane_flat', ''},
+			{'xpanes:pane_flat', '', 'xpanes:pane_flat'},
+			{'xpanes:pane_flat', 'xpanes:pane_flat', 'xpanes:pane_flat'},
 		}
 	},
 }
@@ -484,9 +484,9 @@ minetest.register_node("jonez:wrought_lattice_top", {
 })
 
 minetest.register_craft({
-	output = 'jonez:wrought_lattice_top',
+	output = 'jonez:wrought_lattice_top 16',
 	recipe = {
-		{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
+		{'', 'default:tin_ingot', ''},
 		{'default:steel_ingot', 'default:tin_ingot', 'default:steel_ingot'},
 		{'', '', ''},
 	}
