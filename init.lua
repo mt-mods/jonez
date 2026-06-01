@@ -473,11 +473,6 @@ minetest.register_node("jonez:wrought_lattice_top", {
 		}
 	},
 	tiles = {
-		nil,
-		nil,
-		nil,
-		nil,
-		"jonez_wrought_lattice_top.png",
 		"jonez_wrought_lattice_top.png"
 	},
 	use_texture_alpha = "clip",
