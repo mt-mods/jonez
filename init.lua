@@ -375,10 +375,9 @@ local pavements= {
 	},
 	{name= "jonez:pebbled_wall", description= "Ancient Pebbled Wall", texture= "jonez_pebbled_wall.png",
 		recipe = {
-			{'', 'stairs:slab_marble_brick_polished', ''},
-			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished',
-				'stairs:slab_marble_brick_polished'},
-			{'', 'stairs:slab_marble_brick_polished', ''},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', ''},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', ''},
+			{'stairs:slab_marble_brick_polished', 'stairs:slab_marble_brick_polished', ''},
 		}
 	},
 	{name= "jonez:gothic_wall", description= "Ancient Gothic Wall", texture= "jonez_gothic_top_bottom.png",
